@@ -1,0 +1,25 @@
+.App {
+  text-align: center;
+}
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Nanum+Gothic+Coding&display=swap');
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+
+* {
+  font-family: "Noto Sans KR", sans-serif;
+  font-optical-sizing: auto;
+}
+
+.App {
+  text-align: center;
+}
+
+h1 {
+  text-align:center;
+}
+
+.ellipsis {  overflow: hidden;  
+ text-overflow: ellipsis; 
+ display: -webkit-box; 
+  -webkit-line-clamp: 1;  
+  -webkit-box-orient: vertical;}
