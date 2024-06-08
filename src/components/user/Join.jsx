@@ -1,7 +1,7 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { Row, Col, Form, InputGroup, Card, Button } from 'react-bootstrap'
-import { app } from '../../firebaseInit'
-import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from 'firebase/auth'
+import {app} from '../../firebaseInit'
+import {createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword} from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
 
 const Join = () => {
@@ -9,39 +9,38 @@ const Join = () => {
     const [loading, setLoading] = useState(false);
     const auth = getAuth(app);
     const [form, setForm] = useState({
-        email:'blue@test.com',
-        pass:'12341234'
+            email : 'blue@test.com',
+            pass : '12341234'
     });
-    const {email, pass} = form;
-
+    const { email, pass } = form;
     const onChange = (e) => {
         setForm({
             ...form,
             [e.target.name]:e.target.value
         })
     }
-
     const onSubmit = (e) => {
         e.preventDefault();
-        if(email==="" || pass==="") {
-            alert("이메일 또는 비밀번호를 입력하세요!")
+        if(email === "" || pass === "") {
+            alert("이메일과 비밀번호를 입력하세요!");
         } else {
-            //이메일 가입
+            //이메일가입
             setLoading(true);
             createUserWithEmailAndPassword(auth, email, pass)
             .then(success=>{
-                alert("이메일 가입성공");
+                alert('이메일 가입 성공!');
                 setLoading(false);
-                navi('/login')
+                navi('login')
             })
             .catch(error=>{
-                alert("에러: " + error.message)
+                alert('에러 : ' + error.message);
                 setLoading(false);
             })
+            
         }
     }
 
-    if(loading) return <h1 className='my-5'>로딩중입니다...</h1>
+    if(loading) return  <h3 className="my-5 text-center">로딩중입니다 ...</h3>
     return (
         <Row className='my-5 justify-content-center'>
             <Col md={6} lg={4}>
@@ -52,19 +51,18 @@ const Join = () => {
                     <Card.Body>
                         <form onSubmit={onSubmit}>
                             <InputGroup className='mb-2'>
-                                <InputGroup.Text style={{width:100}} className='justify-content-center'>
-                                    이메일
-                                </InputGroup.Text>
-                                <Form.Control name='email' value={email} onChange={onChange}/>
+                                <InputGroup.Text style={{ width: 100 }} className='justify-content-center' 
+                                >이메일</InputGroup.Text>
+                                <Form.Control name="email" placeholder='이메일을 입력해주세요.' 
+                                value={email} onChange={onChange}></Form.Control>
                             </InputGroup>
                             <InputGroup className='mb-2'>
-                                <InputGroup.Text style={{width:100}} className='justify-content-center'>
-                                    비밀번호
-                                </InputGroup.Text>
-                                <Form.Control name='pass' type='password' value={pass} onChange={onChange}/>
+                                <InputGroup.Text style={{ width: 100 }} className='justify-content-center'>비밀번호</InputGroup.Text>
+                                <Form.Control name="pass" type="password"  placeholder='비밀번호를 입력해주세요.' 
+                                value={pass} onChange={onChange}></Form.Control>
                             </InputGroup>
                             <div>
-                                <Button className='w-100' type='submit'>회원가입</Button>
+                                <Button className='my-2 w-100 btn-secondary' type='submit'>회원가입</Button>
                             </div>
                         </form>
                     </Card.Body>

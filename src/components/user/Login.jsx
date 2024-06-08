@@ -70,7 +70,7 @@ const Login = () => {
                             <div>
                                 <Button className='my-2 w-100 btn-secondary' type='submit'>로그인</Button>
                             </div>
-                            <div>
+                            <div className='text-end'>
                                 <a href='/join'>회원가입</a>
                             </div>
                         </form>
